@@ -1,0 +1,15 @@
+{
+  "id": "synthetic-05-super-top-up",
+  "source": "synthetic",
+  "description": "Hand-calculated: super top-up with 3L aggregate deductible, 1L already borne this year; bill 2.5L -> pays 50,000.",
+  "terms": {
+    "policy_kind": "super_top_up", "sum_insured": 1000000, "deductible": 300000,
+    "first_inception_date": "2022-04-01"
+  },
+  "claim": {
+    "admission_date": "2026-09-10", "patient_age": 40, "diagnosis": "fracture", "is_accident": true, "room_days": 0,
+    "deductible_already_met": 100000,
+    "items": [{"description": "Surgery charges", "amount": 250000}]
+  },
+  "actual_settlement": 50000
+}

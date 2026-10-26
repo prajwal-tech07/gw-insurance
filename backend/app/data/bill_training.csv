@@ -1,0 +1,257 @@
+description,category
+ROOM RENT - SEMI PRIVATE,room_rent
+ROOM CHARGES (SINGLE AC),room_rent
+BED CHARGES GENERAL WARD,room_rent
+ROOM RENT PRIVATE ROOM,room_rent
+DELUXE ROOM CHARGES,room_rent
+TWIN SHARING ROOM RENT,room_rent
+WARD CHARGES,room_rent
+ACCOMMODATION CHARGES,room_rent
+BED CHARGES - SEMI PVT,room_rent
+SINGLE ROOM TARIFF,room_rent
+ROOM RENT (3 DAYS),room_rent
+SUITE ROOM CHARGES,room_rent
+BOARDING AND LODGING,room_rent
+DAY CARE BED CHARGES,room_rent
+ROOM & BOARDING CHARGES,room_rent
+ECONOMY WARD BED,room_rent
+SHARING ROOM CHARGES,room_rent
+PRIVATE WARD RENT,room_rent
+ROOM CHARGES - EXECUTIVE,room_rent
+GENERAL WARD BED RENT,room_rent
+Room rent single private AC,room_rent
+Bed charges,room_rent
+ICU CHARGES,icu
+ICU BED CHARGES,icu
+ICCU CHARGES,icu
+NICU CHARGES,icu
+PICU BED,icu
+MICU CHARGES PER DAY,icu
+SICU STAY,icu
+CCU CHARGES,icu
+HDU CHARGES,icu
+INTENSIVE CARE UNIT CHARGES,icu
+CARDIAC ICU BED,icu
+NEONATAL ICU,icu
+SURGICAL ICU CHARGES,icu
+ICU MONITORING CHARGES,icu
+CRITICAL CARE UNIT CHARGES,icu
+ISOLATION ICU BED,icu
+Icu stay charges,icu
+NURSING CHARGES,nursing
+NURSING CARE,nursing
+NURSING CHARGES ICU,nursing
+RMO CHARGES,nursing
+DMO CHARGES,nursing
+DUTY MEDICAL OFFICER CHARGES,nursing
+NURSING SERVICE CHARGES,nursing
+NURSING FEE PER DAY,nursing
+WARD NURSING,nursing
+STAFF NURSE CHARGES,nursing
+RESIDENT MEDICAL OFFICER VISIT,nursing
+NURSING & RMO CHARGES,nursing
+Nursing charges per day,nursing
+SURGEON FEES,professional_fees
+SURGEON CHARGES,professional_fees
+ASSISTANT SURGEON FEES,professional_fees
+ANAESTHETIST FEES,professional_fees
+ANESTHESIA CHARGES,professional_fees
+ANAESTHESIOLOGIST FEE,professional_fees
+CONSULTANT VISIT CHARGES,professional_fees
+DOCTOR VISIT CHARGES,professional_fees
+PHYSICIAN CONSULTATION,professional_fees
+CARDIOLOGIST VISIT,professional_fees
+NEUROLOGIST CONSULTATION,professional_fees
+SPECIALIST VISIT FEES,professional_fees
+DR. SHARMA VISIT,professional_fees
+CONSULTATION CHARGES,professional_fees
+PROFESSIONAL FEES,professional_fees
+ORTHOPAEDIC SURGEON FEE,professional_fees
+CROSS CONSULTATION,professional_fees
+INTENSIVIST CHARGES,professional_fees
+PAEDIATRICIAN VISIT,professional_fees
+OBSTETRICIAN FEES,professional_fees
+GYNAECOLOGIST CHARGES,professional_fees
+SURGERY PROFESSIONAL CHARGES,professional_fees
+DOCTOR FEES (DAILY VISIT),professional_fees
+Surgeon and assistant fees,professional_fees
+Anaesthesia professional charges,professional_fees
+Consultant fees,professional_fees
+OT CHARGES,ot_charges
+OPERATION THEATRE CHARGES,ot_charges
+O.T. CHARGES,ot_charges
+THEATRE CHARGES,ot_charges
+SURGERY CHARGES,ot_charges
+PROCEDURE CHARGES,ot_charges
+CATH LAB CHARGES,ot_charges
+OT RENT,ot_charges
+MINOR OT CHARGES,ot_charges
+MAJOR OT CHARGES,ot_charges
+LABOUR ROOM CHARGES,ot_charges
+PROCEDURE ROOM CHARGES,ot_charges
+ENDOSCOPY PROCEDURE CHARGES,ot_charges
+OT INSTRUMENT CHARGES,ot_charges
+RECOVERY ROOM CHARGES,ot_charges
+OPERATION CHARGES,ot_charges
+OT GAS CHARGES,ot_charges
+ANAESTHESIA GAS CHARGES,ot_charges
+Operation theatre rent,ot_charges
+Cath lab procedure,ot_charges
+PHARMACY CHARGES,pharmacy
+MEDICINES,pharmacy
+INJ CEFTRIAXONE 1GM,pharmacy
+INJ. PANTOPRAZOLE 40MG,pharmacy
+TAB PARACETAMOL 650,pharmacy
+TAB DOLO 650,pharmacy
+CAP OMEPRAZOLE 20MG,pharmacy
+SYP CROCIN,pharmacy
+IV FLUID NS 500ML,pharmacy
+DNS 500 ML,pharmacy
+RL 500ML,pharmacy
+INJ ONDANSETRON 4MG,pharmacy
+INJ TRAMADOL,pharmacy
+INJ MEROPENEM 1G,pharmacy
+INJ PIPTAZ 4.5,pharmacy
+TAB METFORMIN 500,pharmacy
+INSULIN ACTRAPID,pharmacy
+INJ HEPARIN 5000IU,pharmacy
+OINTMENT BETADINE,pharmacy
+DRUGS AND MEDICINES,pharmacy
+PHARMACY BILL,pharmacy
+INJ. AUGMENTIN 1.2G,pharmacy
+TAB AZITHROMYCIN 500,pharmacy
+INJ DEXAMETHASONE,pharmacy
+NEBULISATION DUOLIN RESPULES,pharmacy
+INJ LASIX,pharmacy
+TAB ECOSPRIN 75,pharmacy
+INJ ENOXAPARIN 40MG,pharmacy
+ANTIBIOTICS,pharmacy
+IV PARACETAMOL INFUSION,pharmacy
+INJ KCL,pharmacy
+SILVER SULFADIAZINE CREAM,pharmacy
+EYE DROPS MOXIFLOXACIN,pharmacy
+CAP AMOXYCILLIN 500,pharmacy
+Medicines and drugs,pharmacy
+Inj. Cefoperazone 1g,pharmacy
+Tab. Pan 40,pharmacy
+SYRINGE 5ML,consumables
+SYRINGES AND NEEDLES,consumables
+IV CANNULA 20G,consumables
+IV SET,consumables
+INFUSION SET,consumables
+FOLEY CATHETER,consumables
+URINARY CATHETER,consumables
+SUTURE MATERIAL VICRYL,consumables
+SUTURES,consumables
+RYLES TUBE,consumables
+SURGICAL DRESSING,consumables
+DRESSING CHARGES,consumables
+SUCTION CATHETER,consumables
+ENDOTRACHEAL TUBE,consumables
+CENTRAL LINE KIT,consumables
+OXYGEN CHARGES,consumables
+DRAIN TUBE,consumables
+CHEST TUBE,consumables
+3 WAY STOPCOCK,consumables
+EXTENSION LINE,consumables
+SURGICAL CONSUMABLES,consumables
+OT CONSUMABLES,consumables
+MEDICAL CONSUMABLES,consumables
+SKIN STAPLER,consumables
+GLOVES STERILE 7.5,consumables
+EXAMINATION GLOVES,consumables
+SURGICAL MASK,consumables
+N95 MASK,consumables
+ECG ELECTRODES,consumables
+Consumables,consumables
+STENT (DRUG ELUTING),implants
+CORONARY STENT,implants
+IOL LENS,implants
+INTRAOCULAR LENS,implants
+KNEE IMPLANT,implants
+HIP PROSTHESIS,implants
+ORTHO PLATE AND SCREWS,implants
+LOCKING PLATE,implants
+HERNIA MESH,implants
+PROLENE MESH,implants
+PACEMAKER,implants
+HEART VALVE,implants
+INTRAMEDULLARY NAIL,implants
+K WIRE,implants
+BONE CEMENT,implants
+TKR IMPLANT,implants
+SPINAL IMPLANTS,implants
+DYNAMIC HIP SCREW,implants
+Implant charges,implants
+CBC,diagnostics
+COMPLETE BLOOD COUNT,diagnostics
+LFT,diagnostics
+KFT,diagnostics
+RFT RENAL FUNCTION TEST,diagnostics
+X-RAY CHEST PA,diagnostics
+XRAY KNEE AP LAT,diagnostics
+MRI BRAIN,diagnostics
+CT SCAN ABDOMEN,diagnostics
+HRCT CHEST,diagnostics
+USG ABDOMEN,diagnostics
+ULTRASOUND PELVIS,diagnostics
+ECG,diagnostics
+2D ECHO,diagnostics
+ECHOCARDIOGRAPHY,diagnostics
+BLOOD SUGAR FASTING,diagnostics
+HBA1C,diagnostics
+LIPID PROFILE,diagnostics
+URINE ROUTINE,diagnostics
+BLOOD CULTURE,diagnostics
+SERUM ELECTROLYTES,diagnostics
+CRP,diagnostics
+DENGUE NS1,diagnostics
+ANGIOGRAPHY,diagnostics
+LAB CHARGES,diagnostics
+PATHOLOGY CHARGES,diagnostics
+RADIOLOGY CHARGES,diagnostics
+INVESTIGATION CHARGES,diagnostics
+HISTOPATHOLOGY,diagnostics
+BIOPSY,diagnostics
+THYROID PROFILE,diagnostics
+D-DIMER,diagnostics
+TROPONIN I,diagnostics
+ABG ARTERIAL BLOOD GAS,diagnostics
+COVID RT PCR,diagnostics
+DOPPLER STUDY,diagnostics
+PET CT,diagnostics
+Laboratory investigations,diagnostics
+Blood tests,diagnostics
+AMBULANCE CHARGES,ambulance
+AMBULANCE,ambulance
+CARDIAC AMBULANCE,ambulance
+ROAD AMBULANCE TRANSFER,ambulance
+AMBULANCE SERVICE,ambulance
+ADMISSION CHARGES,other
+REGISTRATION CHARGES,other
+FOOD AND BEVERAGES,other
+ATTENDANT FOOD,other
+PATIENT DIET,other
+DIETICIAN CHARGES,other
+LAUNDRY,other
+TELEPHONE,other
+MEDICAL RECORDS CHARGES,other
+DISCHARGE SUMMARY CHARGES,other
+BLOOD TRANSFUSION CHARGES,other
+BLOOD BAG,other
+PHYSIOTHERAPY SESSION,other
+PHYSIOTHERAPY CHARGES,other
+MISC CHARGES,other
+SERVICE CHARGES,other
+MORTUARY CHARGES,other
+CERTIFICATE CHARGES,other
+ADMISSION KIT,other
+DOCUMENTATION CHARGES,other
+HOUSE KEEPING CHARGES,other
+TV CHARGES,other
+MINERAL WATER,other
+DIAPERS ADULT,other
+TOILETRIES,other
+BIO MEDICAL WASTE CHARGES,other
+Administrative charges,other
+Patient food,other

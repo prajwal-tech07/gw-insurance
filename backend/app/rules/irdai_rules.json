@@ -1,0 +1,286 @@
+{
+  "_about": "Date-versioned IRDAI / Ombudsman rules used by the engine. 'status': in_force = primary text or several consistent sources checked; reported = secondary sources only; draft = only the draft text was verified. Check the IRDAI website before relying on any rule in a dispute.",
+  "rules": [
+    {
+      "id": "PROP-01",
+      "group": "proportionate_scope",
+      "title": "Room-rent cut applies only to 'associate medical expenses'",
+      "plain": "If you stay in a room above your limit, the insurer may cut related charges in the same proportion, but not pharmacy (medicines), implants and medical devices, or diagnostics (tests).",
+      "effective_from": "2020-03-17",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "Draft circular dated 17 Mar 2020 (verified). Business Standard (12 Jun 2020) reported the final guidelines with the same exclusions.",
+      "source": {
+        "name": "IRDAI guidelines on product filing in health insurance: norms for proportionate deductions",
+        "reference": "IRDAI/HLT/REG/CIR/XXX/01/2020 (draft, 17 Mar 2020)",
+        "url": "https://taxguru.in/corporate-law/modified-guidelines-product-filing-health-insurance-business-norms-proportionate-deductions.html",
+        "also": "https://www.business-standard.com/article/companies/out-of-pocket-expenses-of-policyholders-to-fall-after-new-irdai-guidelines-120061200007_1.html"
+      }
+    },
+    {
+      "id": "PROP-02",
+      "group": "proportionate_icu",
+      "title": "No room-rent proportionate cut on ICU charges",
+      "plain": "Insurers are not allowed to apply the proportionate cut to ICU charges, because there are no ICU categories to compare against.",
+      "effective_from": "2020-03-17",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "Same circular as PROP-01.",
+      "source": {
+        "name": "IRDAI guidelines on product filing in health insurance: norms for proportionate deductions",
+        "reference": "IRDAI/HLT/REG/CIR/XXX/01/2020 (draft, 17 Mar 2020)",
+        "url": "https://taxguru.in/corporate-law/modified-guidelines-product-filing-health-insurance-business-norms-proportionate-deductions.html"
+      }
+    },
+    {
+      "id": "PROP-03",
+      "group": "proportionate_billing",
+      "title": "No proportionate cut where the hospital does not bill by room category",
+      "plain": "If the hospital charges the same for doctors, nursing and OT whatever room you pick (no 'differential billing'), the insurer must not apply the proportionate cut.",
+      "effective_from": "2020-03-17",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "Same circular as PROP-01.",
+      "source": {
+        "name": "IRDAI guidelines on product filing in health insurance: norms for proportionate deductions",
+        "reference": "IRDAI/HLT/REG/CIR/XXX/01/2020 (draft, 17 Mar 2020)",
+        "url": "https://taxguru.in/corporate-law/modified-guidelines-product-filing-health-insurance-business-norms-proportionate-deductions.html"
+      }
+    },
+    {
+      "id": "LIST-01",
+      "group": "standard_lists",
+      "title": "IRDAI standard lists of optional and subsumed items (Lists I to IV)",
+      "plain": "List I items (68, e.g. gloves, masks, diapers, certificates) are optional: the insurer may choose not to pay them. List II (37), III (23) and IV (18) items must be included in room, procedure or treatment charges, so the hospital should not bill them separately.",
+      "effective_from": "2019-10-01",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Applies to products filed on or after 1 Oct 2019; non-compliant older products could not be offered after 1 Oct 2020.",
+      "source": {
+        "name": "IRDAI: Modification of Guidelines on Standardization in Health Insurance",
+        "reference": "IRDAI/HLT/REG/CIR/176/09/2019 dated 27 Sep 2019",
+        "url": "https://taxguru.in/corporate-law/modification-guidelines-standardization-health-insurance.html"
+      }
+    },
+    {
+      "id": "MORA-96",
+      "group": "moratorium",
+      "months": 96,
+      "title": "Moratorium after 8 years (96 months) of continuous cover",
+      "plain": "After 96 continuous months of cover, the insurer could not contest a claim for non-disclosure or misrepresentation, except for proven fraud.",
+      "effective_from": null,
+      "effective_to": "2024-03-31",
+      "status": "reported",
+      "date_note": "Replaced by the 60-month moratorium from 1 Apr 2024.",
+      "source": {
+        "name": "IRDAI guidelines on standardization (moratorium period)",
+        "reference": "Superseded on 1 Apr 2024",
+        "url": "https://www.businesstoday.in/amp/personal-finance/insurance/story/irdai-reduces-pre-existing-disease-waiting-period-from-4-to-3-years-here-is-what-existing-policyholders-should-know-425325-2024-04-12"
+      }
+    },
+    {
+      "id": "MORA-60",
+      "group": "moratorium",
+      "months": 60,
+      "title": "Moratorium after 5 years (60 months) of continuous cover",
+      "plain": "After 60 continuous months of cover (portability and migration count), no policy or claim can be contested for non-disclosure or misrepresentation, except for established fraud. If the sum insured was increased, the 60 months count from the increase, for the extra amount only.",
+      "effective_from": "2024-04-01",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "IRDAI health insurance reforms effective 1 Apr 2024, consolidated in the Master Circular on Health Insurance Business (29 May 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Health Insurance Business",
+        "reference": "29 May 2024 (reforms effective 1 Apr 2024)",
+        "url": "https://arthgyaan.com/blog/understanding-latest-irda-master-circular-on-health-insurance-2024.html"
+      }
+    },
+    {
+      "id": "PED-48",
+      "group": "ped_max_waiting",
+      "months": 48,
+      "title": "Pre-existing disease waiting period: at most 48 months",
+      "plain": "Before 1 Apr 2024, the waiting period for pre-existing diseases could be up to 4 years.",
+      "effective_from": null,
+      "effective_to": "2024-03-31",
+      "status": "reported",
+      "date_note": "Replaced by the 36-month cap from 1 Apr 2024.",
+      "source": {
+        "name": "Business Today: IRDAI reduces PED waiting period from 4 to 3 years",
+        "reference": "12 Apr 2024",
+        "url": "https://www.businesstoday.in/amp/personal-finance/insurance/story/irdai-reduces-pre-existing-disease-waiting-period-from-4-to-3-years-here-is-what-existing-policyholders-should-know-425325-2024-04-12"
+      }
+    },
+    {
+      "id": "PED-36",
+      "group": "ped_max_waiting",
+      "months": 36,
+      "title": "Pre-existing disease waiting period: at most 36 months",
+      "plain": "From 1 Apr 2024, the waiting period for pre-existing diseases can be at most 3 years. Insurers may set a shorter period.",
+      "effective_from": "2024-04-01",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "Effective 1 Apr 2024.",
+      "source": {
+        "name": "Business Today: IRDAI reduces PED waiting period from 4 to 3 years",
+        "reference": "12 Apr 2024",
+        "url": "https://www.businesstoday.in/amp/personal-finance/insurance/story/irdai-reduces-pre-existing-disease-waiting-period-from-4-to-3-years-here-is-what-existing-policyholders-should-know-425325-2024-04-12"
+      }
+    },
+    {
+      "id": "CASH-01",
+      "group": "cashless_timelines",
+      "title": "Cashless: decide in 1 hour, approve discharge in 3 hours",
+      "plain": "Insurers must decide a cashless request within 1 hour and give final discharge approval within 3 hours of the hospital's request. If discharge approval is late, any extra hospital charges are paid by the insurer from its shareholders' fund.",
+      "effective_from": "2024-08-01",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Timelines applied from 1 Aug 2024 (Lok Sabha data and several reports).",
+      "source": {
+        "name": "IRDAI Master Circular on Health Insurance Business",
+        "reference": "29 May 2024; timelines effective 1 Aug 2024",
+        "url": "https://tribuneindia.com/news/irdai-sets-three-hour-limit-to-settle-cashless-health-claims-626490"
+      }
+    },
+    {
+      "id": "DOCS-01",
+      "group": "documents",
+      "title": "No rejection for want of documents; insurer collects documents",
+      "plain": "Policyholders should not have to chase documents: insurers and TPAs should collect them from the hospital. No claim shall be rejected or closed for want of documents or for delayed intimation.",
+      "effective_from": "2024-05-29",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Stated in a Rajya Sabha answer (11 Feb 2025) and reported on the Master Circular's release.",
+      "source": {
+        "name": "IRDAI Master Circular on Health Insurance Business, as stated in a Rajya Sabha answer",
+        "reference": "Rajya Sabha PQ, 11 Feb 2025; Master Circular 29 May 2024",
+        "url": "https://rsdebate.nic.in/bitstream/123456789/758801/1/PQ_267_11022025_U874_p297_p299.pdf",
+        "also": "https://www.theweek.in/news/india/2024/05/30/irdai-issues-new-master-circular-to-make-health-insurance-claims-process-more-seamless.amp.html"
+      }
+    },
+    {
+      "id": "CRC-01",
+      "group": "rejection_process",
+      "title": "Rejections need Claims Review Committee approval and must cite the policy clause",
+      "plain": "A claim can be rejected only with the approval of the insurer's three-member Claims Review Committee, and the rejection must state the specific policy terms it relies on.",
+      "effective_from": "2024-05-29",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "From the Master Circular on Health Insurance Business (29 May 2024), as reported.",
+      "source": {
+        "name": "IRDAI Master Circular on Health Insurance Business",
+        "reference": "29 May 2024",
+        "url": "https://mas360.moneylife.in/article/irdai-unveils-customer-centric-reforms-for-health-insurance-policies/4606.html"
+      }
+    },
+    {
+      "id": "DELAY-01",
+      "group": "delayed_intimation",
+      "title": "Genuine claims must not be rejected only for late intimation",
+      "plain": "IRDAI told insurers not to reject genuine claims only because they were intimated or submitted late, where the delay had a good reason. Late claims must be decided on merit.",
+      "effective_from": "2011-09-20",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Sources date the circular 20 or 29 Sep 2011. Courts (e.g. NCDRC 2018) apply it.",
+      "source": {
+        "name": "IRDA circular on rejection of claims on the ground of delay",
+        "reference": "IRDA/HLTH/MISC/CIR/216/09/2011",
+        "url": "https://www.scconline.com/blog/post/2018/08/22/a-genuine-claim-is-not-to-be-rejected-by-the-insurer-only-on-account-of-delay-in-its-submission/"
+      }
+    },
+    {
+      "id": "SETTLE-30",
+      "group": "settlement_timeline",
+      "title": "Settle or reject within 30 days of the last document; interest if late",
+      "plain": "The insurer must settle or reject a claim within 30 days of receiving the last necessary document (45 days if it investigates). If it pays late, it owes interest at 2% above the bank rate.",
+      "effective_from": null,
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "IRDAI (Protection of Policyholders' Interests) Regulations, 2017, as reported.",
+      "source": {
+        "name": "IRDAI (Protection of Policyholders' Interests) Regulations, 2017",
+        "reference": "Claim settlement timelines",
+        "url": "https://mas360.moneylife.in/article/claims-should-be-settled-within-30-days-orders-irdai-to-insurers/3442.html"
+      }
+    },
+    {
+      "id": "GRV-14",
+      "group": "grievance_timeline",
+      "title": "Insurer must resolve a grievance within 14 days",
+      "plain": "Insurers must acknowledge a complaint immediately and resolve it within 14 days, giving reasons tied to the policy terms if they do not accept it.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "Master Circular on Protection of Policyholders' Interests, 2024 (date approximate); Finance Ministry statement, Aug 2026.",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "Grievance redressal timelines",
+        "url": "https://upstox.com/news/personal-finance/insurance/freedom-from-unfair-insurance-claim-rejections-finance-ministry-explains-how-to-file-complaints/article-198692/",
+        "also": "https://www.mondaq.com/india/insurance-laws-and-products/1536672/irdai39s-update-on-turnaround-times-for-insurance-companies"
+      }
+    },
+    {
+      "id": "OMB-14",
+      "group": "ombudsman_eligibility",
+      "title": "When you can go to the Insurance Ombudsman",
+      "plain": "First complain to the insurer in writing. You can go to the Ombudsman if the insurer rejects it, does not reply within one month, or you are not satisfied with the reply. File within one year of the insurer's reply (or within one year after the one-month period if there was no reply). The same matter must not be pending in a court or consumer forum. The service is free.",
+      "effective_from": null,
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Rule 14(3) and 14(5), Insurance Ombudsman Rules, 2017 (as amended). Text verified from the Council for Insurance Ombudsmen.",
+      "source": {
+        "name": "Insurance Ombudsman Rules, 2017 (as amended)",
+        "reference": "Rule 14(3), Rule 14(5)",
+        "url": "https://cioins.co.in/notification/INSURANCE%20OMBUDSMAN%20RULES,%202017%20AS%20AMENDED-FINAL%20COPY.pdf"
+      }
+    },
+    {
+      "id": "OMB-CAP-30",
+      "group": "ombudsman_cap",
+      "amount": 3000000,
+      "title": "Ombudsman award limit: Rs 30 lakh",
+      "plain": "The Ombudsman could award at most Rs 30 lakh (including expenses).",
+      "effective_from": null,
+      "effective_to": "2023-11-09",
+      "status": "in_force",
+      "date_note": "Rule 17(3) of the 2017 Rules as amended in 2021 (text verified).",
+      "source": {
+        "name": "Insurance Ombudsman Rules, 2017 (as amended 2021)",
+        "reference": "Rule 17(3)",
+        "url": "https://cioins.co.in/notification/INSURANCE%20OMBUDSMAN%20RULES,%202017%20AS%20AMENDED-FINAL%20COPY.pdf"
+      }
+    },
+    {
+      "id": "OMB-CAP-50",
+      "group": "ombudsman_cap",
+      "amount": 5000000,
+      "title": "Ombudsman award limit: Rs 50 lakh",
+      "plain": "The Ombudsman can award up to Rs 50 lakh (including expenses), never more than your actual loss.",
+      "effective_from": "2023-11-10",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "Amendment notified as G.S.R. 828(E) dated 9 Nov 2023 (reported).",
+      "source": {
+        "name": "Insurance Ombudsman (Amendment) Rules, 2023",
+        "reference": "G.S.R. 828(E), 9 Nov 2023",
+        "url": "https://www.taxmann.com/post/blog/govt-amends-insurance-ombudsman-rules-mandates-prior-notice-for-resignation-of-insurance-ombudsman/",
+        "also": "https://businessworld.in/article/insurance-ombudsman-now-accepts-claim-complaints-upto-rs-50-lakh-500223"
+      }
+    },
+    {
+      "id": "MULTI-01",
+      "group": "multiple_policies",
+      "title": "With several health policies, you choose which to claim first",
+      "plain": "If you hold more than one indemnity health policy, you can choose the policy to claim under, and claim the balance or the disallowed amount under another policy. You cannot recover the same expense twice.",
+      "effective_from": null,
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "IRDAI 2017 clarification and standard policy wording, as reported.",
+      "source": {
+        "name": "IRDAI rules on multiple health policies",
+        "reference": "2017 clarification; Master Circular on Health Insurance Business",
+        "url": "https://cafemutual.com/news/insurance/7464-now-policyholders-can-approach-another-health-insurer-if-one-company-rejects-their-claim",
+        "also": "https://www.outlookmoney.com/personal-finance/irdai-master-circular-on-health-insurance-business"
+      }
+    }
+  ]
+}

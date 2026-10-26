@@ -1,0 +1,24 @@
+{
+  "id": "synthetic-01-room-rent",
+  "source": "synthetic",
+  "description": "Hand-calculated: room above 1% limit, proportionate cut on nursing/doctor/OT only; List I and II items removed.",
+  "terms": {
+    "sum_insured": 500000,
+    "room_rent": {"kind": "percent_of_si", "percent": 1},
+    "first_inception_date": "2022-04-01"
+  },
+  "claim": {
+    "admission_date": "2026-09-10", "patient_age": 45, "diagnosis": "appendicitis", "room_days": 3,
+    "items": [
+      {"description": "Room rent single AC", "amount": 18000},
+      {"description": "Nursing charges", "amount": 6000},
+      {"description": "Surgeon fees", "amount": 50000},
+      {"description": "OT charges", "amount": 20000},
+      {"description": "Pharmacy charges", "amount": 30000},
+      {"description": "Lab investigations", "amount": 10000},
+      {"description": "Gloves sterile", "amount": 500},
+      {"description": "Admission kit", "amount": 300}
+    ]
+  },
+  "actual_settlement": 118333.33
+}

@@ -1,0 +1,20 @@
+{
+  "id": "real-001-replace-me",
+  "source": "real",
+  "description": "Copy this file (without the leading underscore), fill in a real settled claim from the settlement letter, and remove personal details.",
+  "terms": {
+    "sum_insured": 500000,
+    "room_rent": {"kind": "percent_of_si", "percent": 1, "amount": 5000},
+    "icu_limit": {"kind": "percent_of_si", "percent": 2},
+    "copay_percent": 0,
+    "first_inception_date": "2022-04-01"
+  },
+  "claim": {
+    "admission_date": "2026-01-15", "patient_age": 45, "diagnosis": "write the diagnosis", "room_days": 3, "icu_days": 0,
+    "items": [
+      {"description": "Room rent", "amount": 15000},
+      {"description": "Surgeon fees", "amount": 40000}
+    ]
+  },
+  "actual_settlement": 0
+}

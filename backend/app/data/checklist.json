@@ -1,0 +1,27 @@
+{
+  "_about": "Documents to collect around a hospital stay. General guidance, not an IRDAI list.",
+  "before": [
+    "Policy copy or e-card, and the insured person's ID proof",
+    "Hospital's itemised cost estimate (room, surgeon, anaesthetist, OT, medicines, implants, tests)",
+    "Room tariff list for every room category",
+    "Cashless pre-authorisation request reference (ask the hospital's insurance/TPA desk)"
+  ],
+  "discharge": [
+    "Discharge summary with diagnosis, treatment and admission/discharge dates and times",
+    "Final itemised hospital bill and all payment receipts",
+    "Pharmacy bills with the matching prescriptions",
+    "All test and imaging reports",
+    "Doctor's consultation notes and prescriptions",
+    "Implant invoice or barcode sticker, if an implant was used",
+    "Claim form (Part A filled by you, Part B by the hospital)",
+    "Cashless approval and final discharge approval letters, if cashless",
+    "For an accident: FIR or medico-legal certificate (MLC) copy"
+  ],
+  "after": [
+    "Cancelled cheque or bank details (for reimbursement)",
+    "Post-hospitalisation bills and prescriptions (keep within your policy's post-hospitalisation days)",
+    "The insurer's settlement or rejection letter",
+    "Copies of everything you submitted, with the date you submitted it"
+  ],
+  "note": "For cashless claims, IRDAI says insurers and TPAs should collect documents from the hospital and no claim should be rejected for want of documents (rule DOCS-01). Keep your own copies anyway."
+}

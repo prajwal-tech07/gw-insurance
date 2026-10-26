@@ -1,0 +1,16 @@
+{
+  "id": "synthetic-04-cataract-sub-limit",
+  "source": "synthetic",
+  "description": "Hand-calculated: cataract package 60,000 capped by the 40,000 sub-limit.",
+  "terms": {
+    "sum_insured": 500000,
+    "sub_limits": [{"name": "Cataract", "keywords": ["cataract"], "amount": 40000}],
+    "waiting": {"initial_days": 30, "specific_disease_months": 24, "specific_diseases": ["cataract"]},
+    "first_inception_date": "2022-04-01"
+  },
+  "claim": {
+    "admission_date": "2026-09-10", "patient_age": 58, "diagnosis": "Cataract right eye", "room_days": 0,
+    "items": [{"description": "Cataract surgery package OT charges", "amount": 60000}]
+  },
+  "actual_settlement": 40000
+}

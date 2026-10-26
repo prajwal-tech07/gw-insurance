@@ -1,0 +1,20 @@
+{
+  "id": "synthetic-03-icu-cap",
+  "source": "synthetic",
+  "description": "Hand-calculated: ICU 12,000/day x 3 capped at 2% of 5L = 10,000/day; no proportionate cut elsewhere.",
+  "terms": {
+    "sum_insured": 500000,
+    "room_rent": {"kind": "percent_of_si", "percent": 1},
+    "icu_limit": {"kind": "percent_of_si", "percent": 2},
+    "first_inception_date": "2022-04-01"
+  },
+  "claim": {
+    "admission_date": "2026-09-10", "patient_age": 50, "diagnosis": "dengue", "room_days": 2, "icu_days": 3,
+    "items": [
+      {"description": "Room rent", "amount": 10000},
+      {"description": "ICU charges", "amount": 36000},
+      {"description": "Nursing charges", "amount": 4000}
+    ]
+  },
+  "actual_settlement": 44000
+}

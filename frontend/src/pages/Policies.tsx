@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
+import { BenefitsEditor, BenefitsFound, SavedBenefits } from "../components/Benefits";
 import { WaitingList } from "../components/ClaimBreakdown";
+import { RenewalPanel } from "../components/RenewalPanel";
 import { emptyTerms, TermsEditor } from "../components/TermsEditor";
 import { Badge, Card, ConsentUpload, Disclaimer, ErrorBox, Field, Notice, Spinner } from "../components/ui";
-import { inr, today } from "../format";
+import { inr, niceDate, today } from "../format";
 import { useApp } from "../state";
 import type { ExtractionResult, PolicyTerms, SavedPolicy, WaitingStatus } from "../types";
 
@@ -65,8 +67,12 @@ function SavedPolicyCard({ policy, onEdit, onDeleted }: { policy: SavedPolicy; o
       </>
     }>
       <p>{policy.terms.insurer ?? "Insurer not set"} · Sum insured {inr(policy.terms.sum_insured)}
-        {policy.terms.period_end && <> · Renews {policy.terms.period_end}</>}</p>
-      <h4>Status today</h4>
+        {policy.terms.period_end && <> · Renews {niceDate(policy.terms.period_end)}</>}</p>
+      <h4>Renewal</h4>
+      <RenewalPanel policy={policy} />
+      <h4>Benefits to use</h4>
+      <SavedBenefits policy={policy} />
+      <h4>Waiting periods today</h4>
       <WaitingList items={waiting} />
       <ErrorBox error={error} />
     </Card>
@@ -149,6 +155,7 @@ export function Policies() {
         {saved && <Notice tone="good">{saved}</Notice>}
       </Card>
 
+      {extraction && <Card title="Benefits you may not be using"><BenefitsFound benefits={extraction.terms.benefits} /></Card>}
       {extraction && <Card title="What we found"><ExtractionTable result={extraction} /></Card>}
 
       {draft && (
@@ -156,6 +163,7 @@ export function Policies() {
           <Notice tone="info">Check every value against your policy before saving, especially the ones marked "Please check".</Notice>
           <Field label="Save as"><input value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Family floater 2026" /></Field>
           <TermsEditor value={draft} onChange={setDraft} />
+          <BenefitsEditor value={draft.benefits} onChange={(benefits) => setDraft({ ...draft, benefits })} />
           <div className="row">
             <button type="button" onClick={save}>Save policy</button>
             <button type="button" className="secondary" onClick={() => { setDraft(null); setExtraction(null); setEditingId(null); }}>Cancel</button>

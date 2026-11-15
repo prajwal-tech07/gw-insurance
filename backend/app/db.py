@@ -1,4 +1,4 @@
-"""SQLite storage for saved policies, complaint trackers and court cases.
+"""SQLite storage for saved policies, complaint trackers, the family vault and court cases.
 
 Uploaded documents are never stored: only the policy terms the user confirms.
 """
@@ -9,7 +9,7 @@ from contextlib import contextmanager
 from datetime import datetime
 
 from app.config import db_path
-from app.models import Case, ComplaintData, PolicyTerms, SavedPolicy
+from app.models import Case, ComplaintData, PolicyTerms, PostHospData, SavedPolicy, VaultEntryData
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS policies (
@@ -20,6 +20,18 @@ CREATE TABLE IF NOT EXISTS policies (
     updated_at TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS complaints (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_json TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS vault (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_json TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS post_hosp (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     data_json TEXT NOT NULL,
     created_at TEXT NOT NULL,
@@ -142,3 +154,59 @@ def list_cases() -> list[Case]:
     with connect() as conn:
         rows = conn.execute("SELECT data_json FROM cases ORDER BY id").fetchall()
     return [Case.model_validate_json(r["data_json"]) for r in rows]
+
+
+# ---------------------------------------------------------------- family vault
+
+def create_vault_entry(data: VaultEntryData) -> int:
+    now = _now()
+    with connect() as conn:
+        cur = conn.execute("INSERT INTO vault (data_json, created_at, updated_at) VALUES (?, ?, ?)",
+                           (data.model_dump_json(), now, now))
+        return int(cur.lastrowid)
+
+
+def list_vault() -> list[tuple[int, VaultEntryData]]:
+    with connect() as conn:
+        rows = conn.execute("SELECT * FROM vault ORDER BY id").fetchall()
+    return [(r["id"], VaultEntryData.model_validate_json(r["data_json"])) for r in rows]
+
+
+def update_vault_entry(entry_id: int, data: VaultEntryData) -> bool:
+    with connect() as conn:
+        cur = conn.execute("UPDATE vault SET data_json = ?, updated_at = ? WHERE id = ?",
+                           (data.model_dump_json(), _now(), entry_id))
+        return cur.rowcount > 0
+
+
+def delete_vault_entry(entry_id: int) -> bool:
+    with connect() as conn:
+        return conn.execute("DELETE FROM vault WHERE id = ?", (entry_id,)).rowcount > 0
+
+
+# ---------------------------------------------------------------- post-hospitalisation bill trackers
+
+def create_post_hosp(data: PostHospData) -> int:
+    now = _now()
+    with connect() as conn:
+        cur = conn.execute("INSERT INTO post_hosp (data_json, created_at, updated_at) VALUES (?, ?, ?)",
+                           (data.model_dump_json(), now, now))
+        return int(cur.lastrowid)
+
+
+def list_post_hosp() -> list[tuple[int, PostHospData]]:
+    with connect() as conn:
+        rows = conn.execute("SELECT * FROM post_hosp ORDER BY id DESC").fetchall()
+    return [(r["id"], PostHospData.model_validate_json(r["data_json"])) for r in rows]
+
+
+def update_post_hosp(tracker_id: int, data: PostHospData) -> bool:
+    with connect() as conn:
+        cur = conn.execute("UPDATE post_hosp SET data_json = ?, updated_at = ? WHERE id = ?",
+                           (data.model_dump_json(), _now(), tracker_id))
+        return cur.rowcount > 0
+
+
+def delete_post_hosp(tracker_id: int) -> bool:
+    with connect() as conn:
+        return conn.execute("DELETE FROM post_hosp WHERE id = ?", (tracker_id,)).rowcount > 0

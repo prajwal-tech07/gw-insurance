@@ -1,6 +1,8 @@
 import { cloneElement, useId, useState, type ReactElement, type ReactNode } from "react";
+import { saveBlob } from "../api";
 import { useApp } from "../state";
 import { inr } from "../format";
+import type { Note } from "../types";
 
 export function Card({ title, children, actions }: { title?: ReactNode; children: ReactNode; actions?: ReactNode }) {
   return (
@@ -87,6 +89,25 @@ export function RuleRef({ id }: { id: string }) {
 export function RuleRefs({ ids }: { ids: string[] }) {
   if (!ids.length) return null;
   return <span className="rule-list">{ids.map((id) => <RuleRef key={id} id={id} />)}</span>;
+}
+
+/** Engine notes (tone + text + the rules behind them), most urgent first as the API sends them. */
+export function NoteList({ notes }: { notes: Note[] }) {
+  return (
+    <>
+      {notes.map((n, i) => (
+        <Notice key={i} tone={n.level}>{n.text} <RuleRefs ids={n.rule_ids} /></Notice>
+      ))}
+    </>
+  );
+}
+
+/** Save text as a file (letters, the family sheet). */
+export function DownloadButton({ text, filename, label = "Download" }: { text: string; filename: string; label?: string }) {
+  return (
+    <button type="button" className="secondary"
+      onClick={() => saveBlob(new Blob([text], { type: "text/plain;charset=utf-8" }), filename)}>{label}</button>
+  );
 }
 
 export function ConsentUpload({ accept, onFile, label, busy }: {

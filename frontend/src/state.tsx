@@ -3,7 +3,8 @@ import { api } from "./api";
 import { translate, type Lang } from "./i18n";
 import type { AnalysisResult, Health, Rule, SavedPolicy } from "./types";
 
-export type Tab = "home" | "policies" | "estimate" | "bill" | "multi" | "rejection" | "complaints" | "cases" | "guide";
+export type Tab = "home" | "policies" | "estimate" | "bill" | "multi" | "rejection" | "complaints" | "vault" | "death"
+  | "scam" | "cases" | "guide";
 
 /** What the rejection analysis hands to the complaint drafter. */
 export interface AnalysisHandoff {

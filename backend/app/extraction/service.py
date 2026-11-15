@@ -6,6 +6,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from app.config import llm_enabled
+from app.extraction.benefits import find_benefits
 from app.extraction.heuristic import FIELDS, REVIEW_BELOW, Candidate, apply_candidate, extract_candidates
 from app.extraction.llm import AIField, ai_extract, parse_ai_value
 from app.models import Citation, ExtractedField, ExtractionResult, PolicyTerms
@@ -89,8 +90,10 @@ def extract_policy(pages: list[str], use_ai: bool = True, client: Any = None) ->
 
     data: dict[str, Any] = {}
     fields: list[ExtractedField] = []
+    merged: dict[str, Candidate | None] = {}
     for key, label, _ in FIELDS:
         cand, source, note = _merge(key, rules.get(key), (ai_fields or {}).get(key), pages)
+        merged[key] = cand
         if cand is None:
             fields.append(ExtractedField(key=key, label=label, source="not_found", confidence=0, needs_review=True,
                                          note="Not found in the document. Enter it from your policy schedule."))
@@ -105,5 +108,6 @@ def extract_policy(pages: list[str], use_ai: bool = True, client: Any = None) ->
     if not any(t.strip() for t in pages):
         warnings.append("No text could be read from this document.")
     terms = _build_terms(data, warnings)
+    terms.benefits = find_benefits(page_tuples, merged.get("pre_post"))
     return ExtractionResult(terms=terms, fields=fields, pages=len(pages),
                             method="ai+rules" if ai_fields else "rules", warnings=warnings)

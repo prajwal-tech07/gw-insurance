@@ -1,19 +1,23 @@
 import { BillCheck } from "./pages/BillCheck";
 import { Cases } from "./pages/Cases";
 import { Complaints } from "./pages/Complaints";
+import { DeathClaim } from "./pages/DeathClaim";
 import { Estimate } from "./pages/Estimate";
 import { Guide } from "./pages/Guide";
 import { Home } from "./pages/Home";
 import { MultiPolicy } from "./pages/MultiPolicy";
 import { Policies } from "./pages/Policies";
 import { Rejection } from "./pages/Rejection";
+import { ScamCheck } from "./pages/ScamCheck";
+import { Vault } from "./pages/Vault";
 import { AppProvider, useApp, type Tab } from "./state";
 
-const TABS: Tab[] = ["home", "policies", "estimate", "bill", "multi", "rejection", "complaints", "cases", "guide"];
+const TABS: Tab[] = ["home", "policies", "estimate", "bill", "multi", "rejection", "complaints", "vault", "death", "scam",
+  "cases", "guide"];
 
 const PAGES: Record<Tab, () => JSX.Element> = {
   home: Home, policies: Policies, estimate: Estimate, bill: BillCheck, multi: MultiPolicy,
-  rejection: Rejection, complaints: Complaints, cases: Cases, guide: Guide,
+  rejection: Rejection, complaints: Complaints, vault: Vault, death: DeathClaim, scam: ScamCheck, cases: Cases, guide: Guide,
 };
 
 function Shell() {
@@ -26,7 +30,7 @@ function Shell() {
           <span className="logo" aria-hidden>₹</span>
           <div>
             <h1>ClaimSaathi</h1>
-            <span className="tag">Health insurance claim helper</span>
+            <span className="tag">Insurance claim helper for Indian families</span>
           </div>
         </div>
         <div className="row">

@@ -209,13 +209,13 @@
       "plain": "Insurers must acknowledge a complaint immediately and resolve it within 14 days, giving reasons tied to the policy terms if they do not accept it.",
       "effective_from": "2024-09-05",
       "effective_to": null,
-      "status": "reported",
-      "date_note": "Master Circular on Protection of Policyholders' Interests, 2024 (date approximate); Finance Ministry statement, Aug 2026.",
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024). The 14-day limit is in Part A, complaints mechanism.",
       "source": {
         "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
-        "reference": "Grievance redressal timelines",
-        "url": "https://upstox.com/news/personal-finance/insurance/freedom-from-unfair-insurance-claim-rejections-finance-ministry-explains-how-to-file-complaints/article-198692/",
-        "also": "https://www.mondaq.com/india/insurance-laws-and-products/1536672/irdai39s-update-on-turnaround-times-for-insurance-companies"
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, turnaround time for resolution of complaints",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://upstox.com/news/personal-finance/insurance/freedom-from-unfair-insurance-claim-rejections-finance-ministry-explains-how-to-file-complaints/article-198692/"
       }
     },
     {
@@ -280,6 +280,242 @@
         "reference": "2017 clarification; Master Circular on Health Insurance Business",
         "url": "https://cafemutual.com/news/insurance/7464-now-policyholders-can-approach-another-health-insurer-if-one-company-rejects-their-claim",
         "also": "https://www.outlookmoney.com/personal-finance/irdai-master-circular-on-health-insurance-business"
+      }
+    },
+    {
+      "id": "GRACE-HEALTH",
+      "group": "health_grace",
+      "title": "Health policy grace period: 30 days (15 days for monthly premiums)",
+      "plain": "If you miss the renewal or premium date, you get a grace period of 30 days (15 days if you pay monthly). Renewing within it keeps all your credits: sum insured, no-claim bonus, waiting periods already served and moratorium months. Cover during the grace period is guaranteed only when the premium is paid in instalments.",
+      "effective_from": "2024-05-29",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (29 May 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Health Insurance Business",
+        "reference": "IRDAI/HLT/CIR/PRO/84/5/2024 dated 29 May 2024, Chapter I paras 8 and 9",
+        "url": "https://mail.caalley.com/irda24/Master_Circular_on_Health_Insurance_Business_29052024.pdf"
+      }
+    },
+    {
+      "id": "RENEW-01",
+      "group": "health_renewal",
+      "title": "Renewal cannot be refused because you claimed",
+      "plain": "A health policy must be renewed (unless the product is withdrawn, or there was established fraud, non-disclosure or misrepresentation). The insurer cannot deny renewal because you made claims, and cannot underwrite you again unless you ask for a higher sum insured.",
+      "effective_from": "2024-05-29",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (29 May 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Health Insurance Business",
+        "reference": "IRDAI/HLT/CIR/PRO/84/5/2024 dated 29 May 2024, Chapter I para 10",
+        "url": "https://mail.caalley.com/irda24/Master_Circular_on_Health_Insurance_Business_29052024.pdf"
+      }
+    },
+    {
+      "id": "PORT-01",
+      "group": "portability_credits",
+      "title": "Porting or migrating keeps your waiting-period credits",
+      "plain": "When you move to another insurer (portability) or another policy of the same insurer (migration), the credits you earned move with you: sum insured, no-claim bonus, specific and pre-existing disease waiting periods served, and moratorium months. Buying a fresh policy instead starts them again.",
+      "effective_from": "2024-05-29",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (29 May 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Health Insurance Business",
+        "reference": "IRDAI/HLT/CIR/PRO/84/5/2024 dated 29 May 2024, Chapter I paras 11 to 13",
+        "url": "https://mail.caalley.com/irda24/Master_Circular_on_Health_Insurance_Business_29052024.pdf"
+      }
+    },
+    {
+      "id": "SENIOR-PREM-10",
+      "group": "senior_premium_cap",
+      "title": "Senior citizens: premium rises above 10% a year need IRDAI consultation",
+      "plain": "For individual indemnity health policies of people aged 60 and above, insurers must not raise the premium by more than 10% a year without first consulting IRDAI.",
+      "effective_from": "2025-01-30",
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "IRDAI circular IRDAI/HLT/CIR/MISC/27/1/2025 dated 30 Jan 2025, as reported by several outlets.",
+      "source": {
+        "name": "IRDAI circular on premium revision for senior citizens",
+        "reference": "IRDAI/HLT/CIR/MISC/27/1/2025 dated 30 Jan 2025",
+        "url": "https://mas360.moneylife.in/article/irdai-caps-health-insurance-premium-hikes-for-senior-citizens-at-10-percentage-annually/4726.html",
+        "also": "https://www.governancenow.com/news/regular-story/irdai-caps-increase-in-insurance-premiums-for-senior-citizens-at-10"
+      }
+    },
+    {
+      "id": "LIFE-GRACE",
+      "group": "life_grace",
+      "title": "Life policy grace period: 30 days (15 days for monthly premiums)",
+      "plain": "A life policy has a grace period of 30 days after the premium due date (15 days for monthly premiums). During it the policy stays in force and the life cover continues. If the premium is not paid by then, the policy lapses; it can usually be revived within the period the policy allows.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: grace period, lapse and revival",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "LIFE-45",
+      "group": "life_incontestable",
+      "title": "After 3 years a life policy cannot be questioned on any ground",
+      "plain": "No life insurance policy can be called in question on any ground after 3 years from the policy date: the later of the issue date, the start of risk, the revival date or the rider date (Section 45, Insurance Act, 1938). Within those 3 years the insurer can question it only for fraud or for a wrong or hidden material fact, and must give its reasons in writing.",
+      "effective_from": null,
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Section 45 as amended by the Insurance Laws (Amendment) Act, 2015. The 3-year rule is restated in the IRDAI Master Circular of 5 Sep 2024 (text verified); the grounds within 3 years are in Section 45(2) and 45(4).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "Section 45, Insurance Act, 1938; IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: policy cannot be contested",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "LIFE-CLAIM-01",
+      "group": "life_claim_process",
+      "title": "No claim rejected for missing documents or late intimation; rejection needs evidence",
+      "plain": "No claim shall be rejected or closed because documents are missing or because it was intimated late. No claim shall be repudiated without legally tenable evidence.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: at the time of claim",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "DEATH-TAT",
+      "group": "death_claim_timeline",
+      "title": "Death claims: settle in 15 days (45 if investigated), or pay interest",
+      "plain": "A life insurer must settle a death claim within 15 days of the claim being intimated, or within 45 days if the claim needs investigation. If it is late, it must pay interest at the bank rate plus 2% from the date of intimation until payment, on its own, along with the claim.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: turnaround time for settlement of claims",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "NOMINEE-01",
+      "group": "nomination",
+      "title": "Nomination is mandatory for life policies and can be changed any time",
+      "plain": "A nominee is needed so the claim can be paid on the death of the life assured. You can name more than one nominee with a share for each, appoint someone to receive the money for a minor nominee, and change the nomination at any time during the policy.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: nomination",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "NOM-39",
+      "group": "beneficial_nominee",
+      "title": "Only a spouse, parent or child can be a 'beneficial nominee'",
+      "plain": "Under Section 39 of the Insurance Act (amended 2015), a nominee who is the policyholder's spouse, parent or child can be a beneficial nominee. Any other nominee receives the money on behalf of the legal heirs. Courts differ on how far even a beneficial nominee excludes legal heirs, so a Will is the surest way to decide who keeps the money.",
+      "effective_from": null,
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "Section 39(7), Insurance Act, 1938 as amended in 2015; High Court rulings differ on its effect (2023-2025).",
+      "source": {
+        "name": "Trilegal / Mondaq: the rights of nominees of insurance policies explained",
+        "reference": "Section 39, Insurance Act, 1938",
+        "url": "https://www.mondaq.com/india/wills-intestacy-estate-planning/1642418/cracking-the-code-the-rights-of-nominees-of-insurance-policies-explained"
+      }
+    },
+    {
+      "id": "ASSIGN-01",
+      "group": "loan_assignment",
+      "title": "A lender gets only the outstanding loan from a death claim",
+      "plain": "If a life policy is assigned to a bank or lender for a loan, the lender is paid only the outstanding loan on the date of death. The balance of the death benefit is paid directly to the nominee's bank account.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: at the time of claim (assigned policies)",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "UNCLAIMED-01",
+      "group": "unclaimed_amounts",
+      "title": "Search for unclaimed insurance money on Bima Bharosa",
+      "plain": "Money owed by an insurer and unpaid for over 12 months is an 'unclaimed amount'. Search for it on Bima Bharosa (bimabharosa.irdai.gov.in/Home/UnclaimedAmount) or the insurer's website using any two of: policy number, PAN, name and date of birth of the policyholder. After 10 years it moves to the Senior Citizens' Welfare Fund, and can still be claimed through the insurer for 25 more years.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: unclaimed amount",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "SPURIOUS-01",
+      "group": "spurious_calls",
+      "title": "IRDAI does not sell policies, announce bonuses or refund money",
+      "plain": "IRDAI and its officials do not sell insurance, announce bonuses, invest premiums or refund amounts. Anyone calling or messaging as IRDAI about such things is a fraud: IRDAI asks people who get such calls to file a police complaint.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024); IRDAI has issued similar public notices since 2014.",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: caution against spurious/fraudulent calls",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "PREM-01",
+      "group": "premium_payment",
+      "title": "Pay premiums only into the insurer's own account",
+      "plain": "Premium must be paid only to the insurer's account, directly or through its authorised distribution channel, and you should get a valid receipt at once.",
+      "effective_from": "2024-09-05",
+      "effective_to": null,
+      "status": "in_force",
+      "date_note": "Text verified from the Master Circular (5 Sep 2024).",
+      "source": {
+        "name": "IRDAI Master Circular on Protection of Policyholders' Interests, 2024",
+        "reference": "IRDAI/PP&GR/CIR/MISC/117/9/2024 dated 5 Sep 2024, Part A: payment of premium",
+        "url": "https://caalley.com/irdai_mc/MC_Protection_of_Policyholders_interests_2024.pdf",
+        "also": "https://irdai.gov.in/web/guest/document-detail?documentId=5625747"
+      }
+    },
+    {
+      "id": "LIFE-SUICIDE",
+      "group": "suicide_clause",
+      "title": "Suicide in the first 12 months: at least 80% of premiums paid",
+      "plain": "Life policies usually exclude death by suicide within 12 months of the start or revival of the policy. Even then, the nominee is entitled to at least 80% of the premiums paid (or the fund value for a unit-linked policy). After 12 months, the policy's normal death benefit applies.",
+      "effective_from": null,
+      "effective_to": null,
+      "status": "reported",
+      "date_note": "IRDAI product regulations (non-linked and linked products), as reported by insurers and consumer sites.",
+      "source": {
+        "name": "IRDAI product regulations on the suicide clause (as reported)",
+        "reference": "IRDAI (Non-Linked / Unit Linked Insurance Products) Regulations",
+        "url": "https://www.kotaklife.com/insurance-guide/about-life-insurance/does-life-insurance-pay-for-suicidal-death",
+        "also": "https://www.tataaia.com/blogs/life-insurance/does-life-insurance-plans-pay-for-deaths-by-suicide.html"
       }
     }
   ]

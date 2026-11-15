@@ -39,6 +39,19 @@ class WaitingPeriods(BaseModel):
 
 
 PolicyKind = Literal["individual", "family_floater", "group", "top_up", "super_top_up"]
+PremiumMode = Literal["yearly", "half_yearly", "quarterly", "monthly", "single"]
+BenefitStatus = Literal["covered", "optional", "not_covered"]
+
+
+class PolicyBenefit(BaseModel):
+    """A benefit people often forget they have (health check-up, teleconsult, AYUSH...)."""
+
+    key: str  # catalogue key, see app/extraction/benefits.py
+    status: BenefitStatus = "covered"
+    limit: str | None = None  # e.g. "Rs 2,000 per policy year"
+    citation: Citation | None = None
+    note: str | None = None
+    last_used: date | None = None
 
 
 class PolicyTerms(BaseModel):
@@ -64,6 +77,16 @@ class PolicyTerms(BaseModel):
     pre_hospitalisation_days: int | None = None
     post_hospitalisation_days: int | None = None
     no_claim_bonus_at_risk: float = Field(default=0, ge=0)  # Rs of bonus lost if claimed
+    premium_mode: PremiumMode = "yearly"  # sets the grace period
+    benefits: list[PolicyBenefit] = Field(default_factory=list)
+
+
+class BenefitInfo(BaseModel):
+    key: str
+    name: str
+    what: str
+    how_to_use: str
+    resets_yearly: bool
 
 
 class ExtractedField(BaseModel):
@@ -398,6 +421,214 @@ class Complaint(ComplaintData):
     deadlines: list[Deadline]
 
 
+# ---------------------------------------------------------------- renewal guard
+
+Tone = Literal["bad", "warn", "info", "good"]
+
+
+class Note(BaseModel):
+    level: Tone
+    text: str
+    rule_ids: list[str] = Field(default_factory=list)
+
+
+class RenewalInput(BaseModel):
+    terms: PolicyTerms
+    current_premium: float | None = Field(default=None, ge=0)
+    renewal_premium: float | None = Field(default=None, ge=0)
+    oldest_member_age: int | None = Field(default=None, ge=0, le=120)
+
+
+class RenewalStatus(BaseModel):
+    status: Literal["unknown", "active", "due_soon", "grace", "lapsed"]
+    renew_by: date | None = None
+    grace_until: date | None = None
+    days_left: int | None = None  # to renew_by; negative once passed
+    headline: str
+    at_stake: list[str]
+    notes: list[Note]
+    unused_benefits: list[str]
+    premium_check: Note | None = None
+
+
+# ---------------------------------------------------------------- family vault
+
+VaultKind = Literal["health", "term_life", "life_savings", "personal_accident", "critical_illness",
+                    "motor", "home", "travel", "other"]
+NomineeRelation = Literal["", "spouse", "child", "parent", "sibling", "other_relative", "other"]
+
+
+class VaultEntryData(BaseModel):
+    kind: VaultKind
+    insurer: str = Field(min_length=1)
+    policy_number: str = ""
+    plan_name: str = ""
+    holder: str = Field(min_length=1)  # who pays / owns the policy
+    insured: str = ""  # life assured, insured people, or the vehicle
+    cover_amount: float = Field(default=0, ge=0)
+    premium: float = Field(default=0, ge=0)
+    premium_mode: PremiumMode = "yearly"
+    start_date: date | None = None
+    revival_date: date | None = None  # if a lapsed life policy was revived
+    next_due: date | None = None  # next premium or renewal date
+    end_date: date | None = None  # maturity or expiry
+    nominee: str = ""
+    nominee_relation: NomineeRelation = ""
+    assigned_to_lender: bool = False
+    agent_contact: str = ""
+    claim_helpline: str = ""
+    documents_at: str = ""  # where the papers are kept
+    notes: str = ""
+
+
+DueStatus = Literal["none", "ok", "due_soon", "grace", "lapsed", "ended"]
+
+
+class VaultEntry(VaultEntryData):
+    id: int
+    checks: list[Note]
+    due_status: DueStatus
+    days_to_due: int | None = None
+    grace_until: date | None = None
+
+
+class VaultSummary(BaseModel):
+    entries: list[VaultEntry]
+    health_policies: int  # saved in My policies
+    life_cover: float
+    accident_cover: float
+    health_cover: float
+    yearly_premium: float
+    missing_nominee: int
+    due_soon: int
+    emergency_sheet: str
+
+
+# ---------------------------------------------------------------- death claim helper
+
+DeathClaimKind = Literal["term_life", "life_savings", "personal_accident", "health", "other"]
+
+
+class DeathClaimInput(BaseModel):
+    kind: DeathClaimKind = "term_life"
+    insurer: str = ""
+    policy_number: str = ""
+    life_assured: str = ""
+    claimant_name: str = ""
+    claimant_relation: str = ""
+    claimant_is_nominee: bool | None = None  # None = not known
+    cover_amount: float = Field(default=0, ge=0)
+    policy_start: date | None = None
+    revival_date: date | None = None
+    date_of_death: date
+    place_of_death: Literal["hospital", "home", "other"] = "other"
+    cause: Literal["illness", "accident", "suicide", "unknown"] = "unknown"
+    intimated_on: date | None = None
+    under_investigation: bool = False
+    assigned_to_lender: bool = False
+    has_accident_cover: bool = False  # accident rider or a personal accident policy
+    bank_rate: float | None = Field(default=None, ge=0, le=25)  # RBI bank rate %, to work out interest if late
+    phone: str = ""
+    email: str = ""
+
+
+class OtherCover(BaseModel):
+    name: str
+    what: str
+    how: str
+    source_url: str
+    status: str
+
+
+class DeathClaimResult(BaseModel):
+    contestable: Literal["no", "limited", "not_applicable", "unknown"]
+    contest_note: str
+    contest_until: date | None = None
+    notes: list[Note]
+    documents: list[str]
+    deadline: date | None = None
+    days_left: int | None = None
+    deadline_note: str
+    steps: list[str]
+    other_money: list[OtherCover]
+    intimation_letter: str
+    follow_up_letter: str | None = None
+    interest_due: float | None = None  # Rs owed so far for a late claim, if the bank rate was given
+
+
+# ---------------------------------------------------------------- scam checker
+
+class ScamInput(BaseModel):
+    text: str = Field(min_length=5, max_length=20_000)
+
+
+class ScamFlag(BaseModel):
+    code: str
+    title: str
+    level: Literal["high", "medium"]
+    evidence: str
+    explanation: str
+    rule_ids: list[str] = Field(default_factory=list)
+
+
+class ScamLink(BaseModel):
+    text: str
+    domain: str
+    level: Literal["high", "medium", "info"]
+    note: str
+
+
+class ReportChannel(BaseModel):
+    name: str
+    how: str
+    url: str | None = None
+
+
+class ScamResult(BaseModel):
+    risk: Literal["high", "medium", "low"]
+    headline: str
+    flags: list[ScamFlag]
+    links: list[ScamLink]
+    phone_numbers: list[str]
+    what_to_do: list[str]
+    report: list[ReportChannel]
+    note: str
+
+
+# ---------------------------------------------------------------- post-hospitalisation bills
+
+class PostHospBill(BaseModel):
+    on: date
+    description: str = Field(min_length=1)
+    amount: float = Field(ge=0)
+
+
+class PostHospData(BaseModel):
+    title: str = Field(min_length=1)
+    discharge_date: date
+    post_days: int = Field(ge=1, le=365)
+    bills: list[PostHospBill] = Field(default_factory=list)
+
+
+class PostHospTracker(PostHospData):
+    id: int
+    window_ends: date
+    days_left: int
+    status: Literal["open", "closing", "closed"]
+    claimable: float
+    outside: list[str]
+    next_step: str
+
+
+# ---------------------------------------------------------------- home alerts
+
+class Alert(BaseModel):
+    level: Tone
+    title: str
+    text: str
+    tab: Literal["policies", "vault", "complaints", "bill"]
+
+
 # ---------------------------------------------------------------- API request bodies
 
 class CalculateInput(BaseModel):
@@ -426,6 +657,7 @@ class ParsedBill(BaseModel):
     total: float
     skipped: list[str]
     warnings: list[str]
+    overcharges: list[Issue] = Field(default_factory=list)
 
 
 class LetterText(BaseModel):

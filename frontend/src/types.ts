@@ -40,6 +40,8 @@ export interface PolicyTerms {
   pre_hospitalisation_days: number | null;
   post_hospitalisation_days: number | null;
   no_claim_bonus_at_risk: number;
+  premium_mode: PremiumMode;
+  benefits: PolicyBenefit[];
 }
 
 export interface ExtractedField {
@@ -74,7 +76,7 @@ export interface ClassifiedItem extends BillItem {
   reason: string;
 }
 
-export interface ParsedBill { items: ClassifiedItem[]; total: number; skipped: string[]; warnings: string[] }
+export interface ParsedBill { items: ClassifiedItem[]; total: number; skipped: string[]; warnings: string[]; overcharges: Issue[] }
 
 export interface ClaimInput {
   admission_date: string;
@@ -176,3 +178,77 @@ export interface Rule {
 export interface Health { status: string; ai_enabled: boolean; ai_model: string; ocr_available: boolean }
 
 export interface Checklist { before: string[]; discharge: string[]; after: string[]; note: string }
+
+// ---------------------------------------------------------------- hidden benefits and renewal guard
+
+export type PremiumMode = "yearly" | "half_yearly" | "quarterly" | "monthly" | "single";
+export type BenefitStatus = "covered" | "optional" | "not_covered";
+export interface PolicyBenefit {
+  key: string; status: BenefitStatus; limit: string | null; citation: Citation | null; note: string | null; last_used: string | null;
+}
+export interface BenefitInfo { key: string; name: string; what: string; how_to_use: string; resets_yearly: boolean }
+
+export type Tone = "bad" | "warn" | "info" | "good";
+export interface Note { level: Tone; text: string; rule_ids: string[] }
+
+export interface RenewalStatus {
+  status: "unknown" | "active" | "due_soon" | "grace" | "lapsed";
+  renew_by: string | null; grace_until: string | null; days_left: number | null; headline: string;
+  at_stake: string[]; notes: Note[]; unused_benefits: string[]; premium_check: Note | null;
+}
+
+// ---------------------------------------------------------------- family vault
+
+export type VaultKind = "health" | "term_life" | "life_savings" | "personal_accident" | "critical_illness" | "motor" | "home" | "travel" | "other";
+export type NomineeRelation = "" | "spouse" | "child" | "parent" | "sibling" | "other_relative" | "other";
+export interface VaultEntryData {
+  kind: VaultKind; insurer: string; policy_number: string; plan_name: string; holder: string; insured: string;
+  cover_amount: number; premium: number; premium_mode: PremiumMode; start_date: string | null; revival_date: string | null;
+  next_due: string | null; end_date: string | null; nominee: string; nominee_relation: NomineeRelation;
+  assigned_to_lender: boolean; agent_contact: string; claim_helpline: string; documents_at: string; notes: string;
+}
+export type DueStatus = "none" | "ok" | "due_soon" | "grace" | "lapsed" | "ended";
+export interface VaultEntry extends VaultEntryData {
+  id: number; checks: Note[]; due_status: DueStatus; days_to_due: number | null; grace_until: string | null;
+}
+export interface VaultSummary {
+  entries: VaultEntry[]; health_policies: number; life_cover: number; accident_cover: number; health_cover: number;
+  yearly_premium: number; missing_nominee: number; due_soon: number; emergency_sheet: string;
+}
+
+// ---------------------------------------------------------------- death claim helper
+
+export type DeathClaimKind = "term_life" | "life_savings" | "personal_accident" | "health" | "other";
+export interface DeathClaimInput {
+  kind: DeathClaimKind; insurer: string; policy_number: string; life_assured: string; claimant_name: string;
+  claimant_relation: string; claimant_is_nominee: boolean | null; cover_amount: number; policy_start: string | null;
+  revival_date: string | null; date_of_death: string; place_of_death: "hospital" | "home" | "other";
+  cause: "illness" | "accident" | "suicide" | "unknown"; intimated_on: string | null; under_investigation: boolean;
+  assigned_to_lender: boolean; has_accident_cover: boolean; phone: string; email: string; bank_rate: number | null;
+}
+export interface OtherCover { name: string; what: string; how: string; source_url: string; status: string }
+export interface DeathClaimResult {
+  contestable: "no" | "limited" | "not_applicable" | "unknown"; contest_note: string; contest_until: string | null;
+  notes: Note[]; documents: string[]; deadline: string | null; days_left: number | null; deadline_note: string;
+  steps: string[]; other_money: OtherCover[]; intimation_letter: string; follow_up_letter: string | null;
+  interest_due: number | null;
+}
+
+// ---------------------------------------------------------------- scam checker and alerts
+
+export interface ScamFlag { code: string; title: string; level: "high" | "medium"; evidence: string; explanation: string; rule_ids: string[] }
+export interface ScamLink { text: string; domain: string; level: "high" | "medium" | "info"; note: string }
+export interface ReportChannel { name: string; how: string; url: string | null }
+export interface ScamResult {
+  risk: "high" | "medium" | "low"; headline: string; flags: ScamFlag[]; links: ScamLink[]; phone_numbers: string[];
+  what_to_do: string[]; report: ReportChannel[]; note: string;
+}
+
+export interface Alert { level: Tone; title: string; text: string; tab: "policies" | "vault" | "complaints" | "bill" }
+
+export interface PostHospBill { on: string; description: string; amount: number }
+export interface PostHospData { title: string; discharge_date: string; post_days: number; bills: PostHospBill[] }
+export interface PostHospTracker extends PostHospData {
+  id: number; window_ends: string; days_left: number; status: "open" | "closing" | "closed";
+  claimable: number; outside: string[]; next_step: string;
+}

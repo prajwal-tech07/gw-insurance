@@ -2,6 +2,7 @@
 
 import json
 import logging
+from datetime import date
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -9,19 +10,27 @@ from fastapi.responses import JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 
 from app import config, db, samples
+from app.alerts import build_alerts
 from app.analyzer.rejection import analyze
 from app.complaints.drafter import draft
 from app.complaints.tracker import timeline
+from app.engine.bill_checks import overcharges
 from app.engine.calculator import calculate_claim
 from app.engine.classifier import classify_items
 from app.engine.estimator import estimate
 from app.engine.optimizer import optimize
+from app.engine.post_hosp import track
+from app.engine.renewal import renewal_events, renewal_status
 from app.engine.waiting import check_waiting
+from app.extraction.benefits import catalogue
 from app.extraction.bills import parse_bill_file, parse_bill_text
 from app.extraction.documents import file_text, ocr_available
 from app.extraction.service import extract_policy
+from app.ics import calendar
 from app.models import (
+    Alert,
     AnalysisResult,
+    BenefitInfo,
     AnalyzeInput,
     CalculateInput,
     Case,
@@ -30,6 +39,8 @@ from app.models import (
     ClassifyInput,
     Complaint,
     ComplaintData,
+    DeathClaimInput,
+    DeathClaimResult,
     DraftInput,
     DraftResult,
     EstimateInput,
@@ -39,20 +50,33 @@ from app.models import (
     OptimizeInput,
     OptimizeResult,
     ParsedBill,
+    PostHospData,
+    PostHospTracker,
     PrecedentSearchResult,
+    RenewalInput,
+    RenewalStatus,
     SavedPolicy,
     SavePolicyInput,
+    ScamInput,
+    ScamResult,
     TextInput,
+    VaultEntry,
+    VaultEntryData,
+    VaultSummary,
     WaitingInput,
     WaitingStatus,
 )
 from app.precedents.store import all_cases, search
 from app.rules import Rule, all_rules
+from app.scam.checker import check_message
+from app.vault.checks import calendar_events, summary, to_entry, validate
+from app.vault.death_claim import help_with_claim
 
 logging.basicConfig(level=logging.INFO)
 
-app = FastAPI(title="ClaimSaathi", version="1.0.0",
-              description="Health insurance claim estimator and rejection helper for India.")
+app = FastAPI(title="ClaimSaathi", version="1.1.0",
+              description="Health insurance claim estimator and rejection helper for India, with renewal reminders, "
+                          "a family insurance vault, a death claim helper and a scam checker.")
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
                    allow_methods=["*"], allow_headers=["*"])
 
@@ -101,7 +125,8 @@ def sample_policy() -> Response:
 
 
 SAMPLE_TEXTS = {"bill": samples.SAMPLE_BILL, "partial-letter": samples.SAMPLE_PARTIAL_LETTER,
-                "rejection-letter": samples.SAMPLE_REJECTION_LETTER}
+                "rejection-letter": samples.SAMPLE_REJECTION_LETTER, "scam-bonus": samples.SAMPLE_SCAM_BONUS,
+                "scam-kyc": samples.SAMPLE_SCAM_KYC, "genuine-renewal": samples.SAMPLE_GENUINE_RENEWAL}
 
 
 @app.get("/api/samples/{name}", response_model=TextInput)
@@ -109,6 +134,21 @@ def sample_text(name: str) -> TextInput:
     if name not in SAMPLE_TEXTS:
         raise HTTPException(404, "Unknown sample.")
     return TextInput(text=SAMPLE_TEXTS[name])
+
+
+@app.get("/api/benefits", response_model=list[BenefitInfo])
+def benefits() -> list[BenefitInfo]:
+    return catalogue()
+
+
+@app.get("/api/alerts", response_model=list[Alert])
+def alerts() -> list[Alert]:
+    return build_alerts(db.list_policies(), db.list_vault(), db.list_complaints(), db.list_post_hosp())
+
+
+def _ics(text: str, filename: str) -> Response:
+    return Response(text, media_type="text/calendar; charset=utf-8",
+                    headers={"Content-Disposition": f'attachment; filename="{filename}"'})
 
 
 # ---------------------------------------------------------------- policies
@@ -155,6 +195,22 @@ def delete_policy(policy_id: int) -> dict:
     return {"deleted": policy_id}
 
 
+@app.post("/api/renewal", response_model=RenewalStatus)
+def renewal(body: RenewalInput) -> RenewalStatus:
+    return renewal_status(body)
+
+
+@app.get("/api/policies/{policy_id}/renewal.ics")
+def renewal_calendar(policy_id: int) -> Response:
+    policy = db.get_policy(policy_id)
+    if not policy:
+        raise HTTPException(404, "Policy not found.")
+    events = renewal_events(policy.id, policy.name, policy.terms, date.today())
+    if not events:
+        raise ValueError("No upcoming renewal dates. Add the policy end date, or renew the policy first.")
+    return _ics(calendar(events), f"renewal-reminders-{policy.id}.ics")
+
+
 @app.post("/api/waiting-periods", response_model=list[WaitingStatus])
 def waiting_periods(body: WaitingInput) -> list[WaitingStatus]:
     return check_waiting(body.terms, body.admission_date, body.diagnosis, body.is_accident, body.is_pre_existing)
@@ -165,7 +221,7 @@ def waiting_periods(body: WaitingInput) -> list[WaitingStatus]:
 def _parsed(items, skipped, warnings) -> ParsedBill:
     classified = classify_items(items)
     return ParsedBill(items=classified, total=round(sum(i.amount for i in classified), 2),
-                      skipped=skipped, warnings=warnings)
+                      skipped=skipped, warnings=warnings, overcharges=overcharges(items))
 
 
 @app.post("/api/bills/parse", response_model=ParsedBill)
@@ -201,6 +257,30 @@ def estimate_endpoint(body: EstimateInput) -> EstimateResult:
 @app.post("/api/optimize", response_model=OptimizeResult)
 def optimize_endpoint(body: OptimizeInput) -> OptimizeResult:
     return optimize(body)
+
+
+@app.get("/api/post-hosp", response_model=list[PostHospTracker])
+def list_post_hosp() -> list[PostHospTracker]:
+    return [track(tid, data) for tid, data in db.list_post_hosp()]
+
+
+@app.post("/api/post-hosp", response_model=PostHospTracker)
+def create_post_hosp(body: PostHospData) -> PostHospTracker:
+    return track(db.create_post_hosp(body), body)
+
+
+@app.put("/api/post-hosp/{tracker_id}", response_model=PostHospTracker)
+def update_post_hosp(tracker_id: int, body: PostHospData) -> PostHospTracker:
+    if not db.update_post_hosp(tracker_id, body):
+        raise HTTPException(404, "Tracker not found.")
+    return track(tracker_id, body)
+
+
+@app.delete("/api/post-hosp/{tracker_id}")
+def delete_post_hosp(tracker_id: int) -> dict:
+    if not db.delete_post_hosp(tracker_id):
+        raise HTTPException(404, "Tracker not found.")
+    return {"deleted": tracker_id}
 
 
 # ---------------------------------------------------------------- rejections and complaints
@@ -243,6 +323,50 @@ def delete_complaint(complaint_id: int) -> dict:
     if not db.delete_complaint(complaint_id):
         raise HTTPException(404, "Complaint not found.")
     return {"deleted": complaint_id}
+
+
+# ---------------------------------------------------------------- family vault, death claims, scams
+
+@app.get("/api/vault", response_model=VaultSummary)
+def vault() -> VaultSummary:
+    return summary(db.list_vault(), db.list_policies())
+
+
+@app.post("/api/vault", response_model=VaultEntry)
+def create_vault_entry(body: VaultEntryData) -> VaultEntry:
+    return to_entry(db.create_vault_entry(validate(body)), body)
+
+
+@app.get("/api/vault/calendar.ics")
+def vault_calendar() -> Response:
+    events = calendar_events(db.list_vault(), db.list_policies())
+    if not events:
+        raise ValueError("No upcoming premium or renewal dates. Add the next due dates first.")
+    return _ics(calendar(events), "family-insurance-reminders.ics")
+
+
+@app.put("/api/vault/{entry_id}", response_model=VaultEntry)
+def update_vault_entry(entry_id: int, body: VaultEntryData) -> VaultEntry:
+    if not db.update_vault_entry(entry_id, validate(body)):
+        raise HTTPException(404, "Vault entry not found.")
+    return to_entry(entry_id, body)
+
+
+@app.delete("/api/vault/{entry_id}")
+def delete_vault_entry(entry_id: int) -> dict:
+    if not db.delete_vault_entry(entry_id):
+        raise HTTPException(404, "Vault entry not found.")
+    return {"deleted": entry_id}
+
+
+@app.post("/api/death-claim", response_model=DeathClaimResult)
+def death_claim(body: DeathClaimInput) -> DeathClaimResult:
+    return help_with_claim(body)
+
+
+@app.post("/api/scam-check", response_model=ScamResult)
+def scam_check(body: ScamInput) -> ScamResult:
+    return check_message(body)
 
 
 # ---------------------------------------------------------------- precedents

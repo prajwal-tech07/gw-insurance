@@ -41,6 +41,22 @@ SECTION A - BENEFITS
 7. Cumulative Bonus: 10% of the sum insured for each claim-free year, up to a maximum of 50%.
 
 8. Where the insured person stays in a room above the eligible limit, associate medical expenses shall be paid in the proportion that the eligible room rent bears to the actual room rent.
+
+9. Annual health check-up: up to Rs. 1,500 once every policy year, whether or not a claim is made.
+
+10. Teleconsultation with a general physician through our app, at no cost.
+
+11. AYUSH treatment as an in-patient in a government-recognised AYUSH hospital is covered up to the sum insured.
+
+12. Day care treatments such as dialysis and chemotherapy are covered.
+
+13. Road ambulance charges up to Rs. 2,000 per hospitalisation.
+
+14. Domiciliary hospitalisation is covered when the treating doctor certifies that the patient cannot be moved to a hospital.
+
+15. Restore benefit: if the sum insured is used up in a policy year, it is restored once for a later admission for a different illness.
+
+16. Out-patient (OPD) treatment is not covered under this policy.
 """,
     f"""{SAMPLE_BANNER}
 
@@ -132,6 +148,26 @@ Dear Sir/Madam,
 We regret to inform you that your claim for hospitalisation from 02/09/2026 to 06/09/2026 for Coronary Artery Disease has been repudiated.
 Reason: On scrutiny of the documents it is observed that the insured is a known case of Diabetes Mellitus Type 2 for the last 8 years, which was not disclosed at the time of proposal. This amounts to non-disclosure of material facts and suppression of pre-existing disease.
 Hence the claim stands repudiated.
+"""
+
+
+SAMPLE_SCAM_BONUS = """SAMPLE MESSAGE - FICTIONAL - FOR TESTING CLAIMSAATHI ONLY
+Dear Policyholder, this is Mr. Sharma, Senior Officer, IRDAI Department, New Delhi.
+Your lapsed policy bonus of Rs 3,85,000 is pending for release.
+To release the amount, pay GST and processing charges of Rs 12,500 within 24 hours to UPI ID sample.refund@ybl.
+Call 90000 00000. Aapka paisa turant account mein aa jayega.
+"""
+
+SAMPLE_SCAM_KYC = """SAMPLE MESSAGE - FICTIONAL - FOR TESTING CLAIMSAATHI ONLY
+Your health policy will be blocked today as KYC is pending. Update KYC immediately: http://bit.ly/sample-kyc-update
+or install our app from http://sample-bima-kyc.xyz/update.apk
+Our executive will call you; share the OTP you receive to verify.
+"""
+
+SAMPLE_GENUINE_RENEWAL = """SAMPLE MESSAGE - FICTIONAL - FOR TESTING CLAIMSAATHI ONLY
+Dear A. Sample, your policy SAMPLE/HS/000123 with Suraksha Sample General Insurance is due for renewal on 31-03-2027.
+Premium: Rs 18,450 (incl. GST). Renew on our official website or app, or call the number on your policy document.
+Never share your OTP or PIN with anyone. IRDAI Regn. No. 000.
 """
 
 

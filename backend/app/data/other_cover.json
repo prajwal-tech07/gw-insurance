@@ -1,0 +1,61 @@
+{
+  "_about": "Other money a family may be owed after a death, besides the policies they know about. 'status': in_force = checked in the IRDAI text; reported = checked in secondary sources only; guidance = general advice. Check each with the bank, employer or insurer.",
+  "items": [
+    {
+      "name": "PMJJBY (Pradhan Mantri Jeevan Jyoti Bima Yojana)",
+      "what": "Rs 2 lakh life cover, for death from any cause, for bank or post office account holders who joined the scheme (joining age 18 to 50, cover up to age 55). The yearly premium of Rs 436 is auto-debited.",
+      "how": "Look for a Rs 436 debit (usually in May or June) in the person's bank or post office statements. Claim at that branch with the claim form, death certificate and the nominee's KYC. File soon: the scheme asks for claims within 30 days of the death.",
+      "source_url": "https://jansuraksha.gov.in",
+      "status": "reported",
+      "applies": "any"
+    },
+    {
+      "name": "PMSBY (Pradhan Mantri Suraksha Bima Yojana)",
+      "what": "Rs 2 lakh for accidental death, for account holders aged 18 to 70 who joined the scheme. The yearly premium of Rs 20 is auto-debited.",
+      "how": "Look for a Rs 20 debit in the person's bank statements. Claim at that branch with the claim form, death certificate, FIR and post-mortem report.",
+      "source_url": "https://en.vikaspedia.in/social-welfare/social-security/pradhan-mantri-suraksha-bima-yojana",
+      "status": "reported",
+      "applies": "accident"
+    },
+    {
+      "name": "EDLI (insurance for EPF members)",
+      "what": "If the person was a salaried EPF member, the family can claim EDLI insurance (reported as up to Rs 7 lakh) as well as the PF balance and any EPS pension.",
+      "how": "Claim from EPFO online on the EPFO portal or through the last employer, with the death certificate and the nominee's bank details.",
+      "source_url": "https://www.epfindia.gov.in",
+      "status": "reported",
+      "applies": "any"
+    },
+    {
+      "name": "Employer group cover",
+      "what": "Many employers give staff group term life or accident cover, separate from any policy the person bought.",
+      "how": "Ask the employer's HR team in writing whether any group life or accident cover applied, and for the claim form.",
+      "source_url": "",
+      "status": "guidance",
+      "applies": "any"
+    },
+    {
+      "name": "Loan, card and bank account covers",
+      "what": "Home, car and personal loans often come with linked life cover, and some bank accounts, debit cards and credit cards include accident cover.",
+      "how": "Ask every bank and card issuer the person used, in writing, whether any insurance was attached to a loan, account or card.",
+      "source_url": "",
+      "status": "guidance",
+      "applies": "any"
+    },
+    {
+      "name": "Vehicle owner-driver cover",
+      "what": "Most vehicle insurance policies include personal accident cover for the owner-driver.",
+      "how": "If the person died in a road accident while driving their own vehicle, claim from that vehicle insurer as well.",
+      "source_url": "",
+      "status": "guidance",
+      "applies": "accident"
+    },
+    {
+      "name": "Forgotten or unclaimed policies",
+      "what": "Money owed by insurers that was never claimed, for example from an old policy the family did not know about.",
+      "how": "Search Bima Bharosa's unclaimed amount page, which links every insurer's search, using any two of: policy number, PAN, name and date of birth of the policyholder.",
+      "source_url": "https://bimabharosa.irdai.gov.in/Home/UnclaimedAmount",
+      "status": "in_force",
+      "applies": "any"
+    }
+  ]
+}

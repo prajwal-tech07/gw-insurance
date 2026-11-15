@@ -473,13 +473,25 @@ def find_period(pages: list[Page]) -> Candidate | None:
     return None
 
 
+# "send the post-hospitalisation bills within 30 days from the completion of..." is a claim deadline, not the cover.
+CLAIM_DEADLINE = re.compile(r"submi|deliver|intimat|notif|\bsend\b|claim\s+(?:form|documents)|completion", re.I)
+
+
+def _days_match(pattern: str, text: str) -> re.Match[str] | None:
+    for m in re.finditer(pattern, text, re.I):
+        rest_of_sentence = text[m.end(): m.end() + 80].split(".")[0]
+        if not CLAIM_DEADLINE.search(m.group(0) + rest_of_sentence):
+            return m
+    return None
+
+
 def find_pre_post(pages: list[Page]) -> Candidate | None:
     pre = post = None
     page = quote = None
     for pno, raw in pages:
         text = flat(raw)
-        a = re.search(r"pre[- ]?hospitali[sz]ation[^.]{0,90}?(\d{2,3})\s*days", text, re.I)
-        b = re.search(r"post[- ]?hospitali[sz]ation[^.]{0,90}?(\d{2,3})\s*days", text, re.I)
+        a = _days_match(r"pre[- ]?hospitali[sz]ation[^.]{0,90}?(\d{2,3})\s*days", text)
+        b = _days_match(r"post[- ]?hospitali[sz]ation[^.]{0,90}?(\d{2,3})\s*days", text)
         if a and pre is None:
             pre, page, quote = int(a.group(1)), pno, snippet(text, a.start(), a.end())
         if b and post is None:

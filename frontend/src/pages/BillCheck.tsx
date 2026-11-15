@@ -3,6 +3,7 @@ import { api } from "../api";
 import { ClaimBreakdown } from "../components/ClaimBreakdown";
 import { ClaimDetails, defaultDetails } from "../components/ClaimDetails";
 import { ItemsEditor } from "../components/ItemsEditor";
+import { PostHospital } from "../components/PostHospital";
 import { PolicyPicker } from "../components/PolicyPicker";
 import { Badge, Card, ConsentUpload, Disclaimer, ErrorBox, Notice, Spinner } from "../components/ui";
 import { categoryLabel, inr } from "../format";
@@ -67,6 +68,7 @@ export function BillCheck() {
         </div>
         {busy && <Spinner />}
         {parsed?.warnings.map((w, i) => <Notice key={i} tone="warn">{w}</Notice>)}
+        {parsed?.overcharges.map((o, i) => <Notice key={`o${i}`} tone="bad"><strong>Possible overcharge:</strong> {o.message}</Notice>)}
         {parsed && parsed.skipped.length > 0 && (
           <details><summary>{parsed.skipped.length} line(s) skipped (totals, headers)</summary>
             <ul className="small">{parsed.skipped.map((s, i) => <li key={i}>{s}</li>)}</ul>
@@ -104,6 +106,7 @@ export function BillCheck() {
           <ClaimBreakdown result={result} />
         </Card>
       )}
+      <PostHospital />
       <Disclaimer />
     </div>
   );

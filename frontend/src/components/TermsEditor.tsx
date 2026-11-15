@@ -1,4 +1,4 @@
-import type { PolicyKind, PolicyTerms, RoomLimit, SubLimit } from "../types";
+import type { PolicyKind, PolicyTerms, PremiumMode, RoomLimit, SubLimit } from "../types";
 import { num, numOrNull } from "../format";
 import { Field } from "./ui";
 
@@ -10,6 +10,7 @@ export const emptyTerms = (): PolicyTerms => ({
   waiting: { initial_days: 30, pre_existing_months: null, specific_disease_months: null, specific_diseases: [], maternity_months: null },
   exclusions: [], consumables_cover: false, room_rent_waiver: false, first_inception_date: null, period_start: null,
   period_end: null, pre_hospitalisation_days: null, post_hospitalisation_days: null, no_claim_bonus_at_risk: 0,
+  premium_mode: "yearly", benefits: [],
 });
 
 const str = (n: number | null | undefined) => (n == null ? "" : String(n));
@@ -123,6 +124,15 @@ export function TermsEditor({ value, onChange }: { value: PolicyTerms; onChange:
         </Field>
         <Field label="Current period from"><input type="date" value={value.period_start ?? ""} onChange={(e) => set("period_start", e.target.value || null)} /></Field>
         <Field label="Current period to"><input type="date" value={value.period_end ?? ""} onChange={(e) => set("period_end", e.target.value || null)} /></Field>
+        <Field label="Premium paid" hint="Sets the grace period: 15 days if monthly, 30 days otherwise">
+          <select value={value.premium_mode} onChange={(e) => set("premium_mode", e.target.value as PremiumMode)}>
+            <option value="yearly">Yearly</option>
+            <option value="half_yearly">Half-yearly</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="monthly">Monthly</option>
+            <option value="single">Single premium (multi-year)</option>
+          </select>
+        </Field>
         <Field label="Pre-hospitalisation (days)"><input type="number" min={0} value={str(value.pre_hospitalisation_days)} onChange={(e) => set("pre_hospitalisation_days", numOrNull(e.target.value))} /></Field>
         <Field label="Post-hospitalisation (days)"><input type="number" min={0} value={str(value.post_hospitalisation_days)} onChange={(e) => set("post_hospitalisation_days", numOrNull(e.target.value))} /></Field>
       </fieldset>

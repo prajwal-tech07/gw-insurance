@@ -4,7 +4,11 @@ export const inr = (n: number | null | undefined): string => (n == null ? "-" : 
 
 export const pct = (n: number | null | undefined, digits = 0): string => (n == null ? "-" : `${(n * 100).toFixed(digits)}%`);
 
-export const today = (): string => new Date().toISOString().slice(0, 10);
+/** Today's date on this device ("YYYY-MM-DD"). Not toISOString(): that is UTC, a day behind in India before 5:30 am. */
+export const today = (): string => {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+};
 
 export const niceDate = (iso: string | null | undefined): string => {
   if (!iso) return "-";

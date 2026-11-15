@@ -175,3 +175,16 @@ q { font-style: italic; }
   .stat-value { font-size: 1.25rem; }
   .hero h2 { font-size: 1.3rem; }
 }
+
+.benefit { border-top: 1px solid var(--border); padding-top: 8px; }
+.benefit:first-child { border-top: none; padding-top: 0; }
+.benefit-name { flex: 1 1 180px; font-weight: 600; }
+.warn-text { color: var(--warn); }
+.renewal p { margin: 4px 0; }
+ol.checklist { padding-left: 20px; margin: 4px 0; display: grid; gap: 4px; }
+
+@media print {
+  .topbar, .tabs, .footer, button, .button { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { border: none; box-shadow: none; }
+}
